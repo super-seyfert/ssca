@@ -12,7 +12,6 @@ import lruCacheDriver from "unstorage/drivers/lru-cache";
  * Super Seyfert Cache Adapter
  *
  * Minimal cache adapter on top of Unstorage, using LRU cache driver.
- * @todo Add support for other drivers
  * @todo Implement generic types
  *
  * @returns `SSCAdapter`
