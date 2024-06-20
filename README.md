@@ -24,6 +24,13 @@ seyfertClient.setServices({
     }
 })
 
+// Synchronize seyfert types to promises
+declare module "seyfert" {
+    interface InternalOptions {
+        asyncCache: true;
+    }
+}
+
 // That's it! Now you can use Seyfert with your new upgraded cache adapter!
 ```
 
