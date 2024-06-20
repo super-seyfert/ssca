@@ -18,29 +18,19 @@ import lruCacheDriver from "unstorage/drivers/lru-cache";
  * @returns `SSCAdapter`
  */
 export class SSCAdapter implements Adapter {
-	readonly driver: Driver = lruCacheDriver(undefined);
-	readonly __storage: Storage<StorageValue> = createStorage({
-		driver: this.driver,
-	});
-	public storage: Storage<string> = prefixStorage<string>(
-		this.__storage,
-		"seyfert",
-	);
-	public relationships: Storage<string[]> = prefixStorage<string[]>(
-		this.__storage,
-		"seyfert:relationships",
-	);
+	readonly __storage: Storage<StorageValue>;
+	public storage: Storage<string>;
+	public relationships: Storage<string[]>;
 
-	/**
-	 * Change the storage driver
-	 *
-	 * @default lruCacheDriver({})
-	 * @see https://unstorage.unjs.io/drivers
-	 * @returns `SSCAdapter`
-	 */
-	public async setDriver(driver: Driver) {
-		this.__storage.mount("", driver);
-		return this;
+	constructor(driver: Driver = lruCacheDriver({})) {
+		this.__storage = createStorage({
+			driver: driver,
+		});
+		this.storage = prefixStorage<string>(this.__storage, "seyfert");
+		this.relationships = prefixStorage<string[]>(
+			this.__storage,
+			"seyfert:relationships",
+		);
 	}
 
 	async scan(query: string, keys?: false): Promise<unknown[]>;
