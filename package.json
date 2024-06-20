@@ -3,8 +3,7 @@
 	"description": "cache adapter for seyfert",
 	"version": "1.1.2",
 	"type": "module",
-	"main": "./dist/cjs/index.js",
-	"module": "./dist/index.mjs",
+	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": ["dist"],
 	"author": {
